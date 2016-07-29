@@ -12,6 +12,7 @@ class TestCest
     }
     /**/
     function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage) {
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
         $deployPage->goToInstancesPage();
         $deployPage->goToSettingsPage();
@@ -19,16 +20,19 @@ class TestCest
         $deployPage->goToDashboardPage(); }
 
     function T3CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
         $deployPage->createTestInstance('master-test');
     }
 
     function T4StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToInstancesPage();
         $deployPage->stopTestInstance();
     }
 
     function T5StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
         $deployPage->goToInstancesPage();
         $deployPage->startTestInstance();
@@ -36,6 +40,7 @@ class TestCest
 
 
     function T6DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
         $deployPage->goToInstancesPage();
         $deployPage->deleteTestInstance();
