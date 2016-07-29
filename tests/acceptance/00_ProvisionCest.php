@@ -4,7 +4,7 @@ use \Step\Acceptance;
 /**
  * @group test
  */
-class PSCest
+class ProvisionCest
 {
 
     // ShopByBrand
