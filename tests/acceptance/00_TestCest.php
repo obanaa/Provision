@@ -7,17 +7,38 @@ use \Step\Acceptance;
 class TestCest
 {
 
-    function T832AddACategory(Step\Acceptance\AdminPanelLoginSteps $I, \Page\MagentoManageCategories $manageCategories)
-    {
-        $I->loginAdminPanel('testing', 'Da1mat1an5');
-        $manageCategories->goToManageCategory();
-        $manageCategories->createCategory('Test category');
-        $manageCategories->editCategory('Test category');
-        $manageCategories->aboveCategory();
-        $manageCategories->belowCategory();
-        $manageCategories->intoSibling();
-        $manageCategories->deleteCategory();
+    function T1Authorization(Step\Acceptance\PSLoginSteps $I)    {
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+    }
+    /**/
+    function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage) {
+        $deployPage->goToDeployPage();
+        $deployPage->goToInstancesPage();
+        $deployPage->goToSettingsPage();
+        $deployPage->goToUsersPage();
+        $deployPage->goToDashboardPage(); }
 
+    function T3CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $deployPage->goToDeployPage();
+        $deployPage->createTestInstance('master-test');
+    }
+
+    function T4StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $deployPage->goToInstancesPage();
+        $deployPage->stopTestInstance();
+    }
+
+    function T5StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $deployPage->goToDeployPage();
+        $deployPage->goToInstancesPage();
+        $deployPage->startTestInstance();
+    }
+
+
+    function T6DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
+        $deployPage->goToDeployPage();
+        $deployPage->goToInstancesPage();
+        $deployPage->deleteTestInstance();
     }
 
 }
