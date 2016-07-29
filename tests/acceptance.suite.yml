@@ -8,10 +8,11 @@ modules:
     config:
         WebDriver:
             url: 'http://149.202.195.201:8113/'
+
             restart: false
             browser: chrome
             window_size: 1980x1780
-            clear_cookies: false
+            #clear_cookies: false
 
 
 # --run in browserstack--
