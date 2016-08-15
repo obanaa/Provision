@@ -17,8 +17,8 @@ modules:
 
 # --run in browserstack--
 
-            #host: 'hub.browserstack.com'
-            #port: 80
+            host: 'hub.browserstack.com'
+            port: 80
 
 
 # -- login in browserstack
