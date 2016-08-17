@@ -11,6 +11,7 @@ class TestCest
         $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');
     }
 /**/
+    
 
     function T1Authorization(Step\Acceptance\PSLoginSteps $I)    {
             $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
