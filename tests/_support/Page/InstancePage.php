@@ -2,17 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: obana
- * Date: 20.07.16
- * Time: 13:27
+ * Date: 17.08.16
+ * Time: 13:30
  */
 
 namespace Page;
 use Exception;
 
-
-class PSDeployPage
+class InstancePage
 {
-
     protected $tester;
 
     public function __construct(\AcceptanceTester $I)
@@ -20,7 +18,9 @@ class PSDeployPage
     {
         $this->tester = $I; // подкл. конструктора
     }
-//SideBar
+
+
+    //SideBar
     public static $dashboardLink = './/*[@title="Dashboard"]';
     public static $deployLink = './/*[@title="Deploy"]';
     public static $instancesLink = './/*[@title="Instances"]';
@@ -29,52 +29,6 @@ class PSDeployPage
     public static $titleText = './/*[@class="title"]';
 
 
-    public function goToDeployPage(){
-        $I= $this ->tester;
-        $I->click(self::$deployLink);
-        $I->waitForElementVisible(self::$titleText);
-        $I->see('Deploy',self::$titleText);
-    }
-
-    public function goToInstancesPage(){
-        $I= $this ->tester;
-        $I->click(self::$instancesLink);
-        $I->waitForElementVisible(self::$titleText);
-        $I->see('Instances',self::$titleText);
-    }
-
-    public function goToUsersPage(){
-        $I= $this ->tester;
-        $I->click(self::$usersLink);
-        $I->waitForElementVisible(self::$titleText);
-        $I->see('Users',self::$titleText);}
-
-    public function goToSettingsPage(){
-        $I= $this ->tester;
-        $I->click(self::$settingsLink);
-        $I->waitForElementVisible(self::$titleText);
-        $I->see('Settings',self::$titleText);
-    }
-
-    public function goToDashboardPage(){
-        $I= $this ->tester;
-        $I->click(self::$dashboardLink);
-        $I->waitForElementVisible(self::$titleText);
-        $I->see('Dashboard',self::$titleText);
-    }
-
-/*
-    // DEPLOY PAGE
-
-    public static $branchMasterTestDropDown = '//*[@id="select_branch"]/option[text()="master"]';
-    public static $newBranchField = '//*[@id="newNameBranch"]';
-    public static $createBranchButton = '//*[@id="newBranchId"]';
-    public static $instanceNameField = '//*[@id="instance_name"]';
-    public static $instanceDescriptionField = '//*[@id="instance_description"]';
-    public static $existErrorBranch = '//*[@id="errorBranchName"]';
-    public static $existErrorInstance = '//*[@id="errorInstancename"]';
-    public static $checkboxCommit = '//*[@class=\'deploy-container\']/form/div[2]//input';
-    public static $createInstanceButton = '//*[@id="submitCreateInstance"]';
 
     // Instance Page
 
@@ -88,24 +42,7 @@ class PSDeployPage
     public static $stopActionButton = '//*[@class="actions-div"]//li[2]/a';
     public static $destroyActionButton = '//*[@class="actions-div"]//li[3]/a';
 
-    public function createTestInstance($instanceName){
-        $I= $this ->tester;
-        $I->waitForElementVisible(self::$checkboxCommit);
-        $I->click(self::$branchMasterTestDropDown);
-        $I->fillField(self::$instanceNameField,$instanceName);
-        try {
-            $I->waitForElementNotVisible(self::$existErrorInstance);
-            $I->click(self::$createInstanceButton);
-            $I->waitForElementVisible(self::$inProgressStatus);
-            $I->waitForElementVisible(self::$statusMasterTestRun,10000);
-        }catch (Exception $e) {
-            $I->waitForElementVisible(self::$existErrorInstance);
-            $I->click(self::$instancesLink);
-            $I->waitForElementVisible(self::$titleText);
-            $I->see('Instances',self::$titleText);
-            $I->waitForElementVisible(self::$testInstanceName);
-        }
-    }
+
 
 
     public function stopTestInstance(){
@@ -171,7 +108,5 @@ class PSDeployPage
         $I->click(self::$viewButton);
         $I->waitForElementVisible(self::$viewStartButton);
     }
-*/
-
 
 }
