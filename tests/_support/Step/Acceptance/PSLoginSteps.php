@@ -19,7 +19,7 @@ class PSLoginSteps extends \AcceptanceTester
     public static $titleText = './/*[@class="title"]';
     public static $errorPassword = './/*[@for="password"]';
     public static $errorEmail = './/*[@for="email"]';
-
+    public static $logOutButton = './/*[@class="pull-left logout"]';
 
 
     public function loginProvSystem($login,$pass){
@@ -34,6 +34,13 @@ class PSLoginSteps extends \AcceptanceTester
     } catch (Exception $e){
         $I->waitForElementVisible(self::$titleText);
         }
+    }
+
+    public function logoutProvSystem(){
+        $I = $this;
+        $I -> click(self::$logOutButton);
+        $I->waitForElementVisible(self::$emailField);
+
     }
 
     public function invalidAuthorization($login,$pass,$wrong,$empty){

@@ -6,16 +6,17 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-
+/**/
     function T0InvalidAuthorization(Step\Acceptance\PSLoginSteps $I)    {
         $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');
     }
-/**/
 
-    function T1Authorization(Step\Acceptance\PSLoginSteps $I)    {
-            $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+
+    function T1LoginLogout(Step\Acceptance\PSLoginSteps $I)    {
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+        $I->logoutProvSystem();
     }
-
+    /**/
     function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage) {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
