@@ -83,6 +83,7 @@ class PSDeployPage
     public static $statusMasterTestRun = '//*[contains(@class, "ind-run")]/../../td[2]//a[text()="master-test"]';
     public static $statusMasterTestStop = '//*[contains(@class, "ind-fail")]/../../td[2]//a[text()="master-test"]';
     public static $settingsButton = '//tr[2]//a[2]/button';
+    public static $viewButton = '//tr[2]//a[1]/button';
     public static $restartActionButton = '//*[@class="actions-div"]//li[1]/a';
     public static $stopActionButton = '//*[@class="actions-div"]//li[2]/a';
     public static $destroyActionButton = '//*[@class="actions-div"]//li[3]/a';
@@ -156,6 +157,20 @@ class PSDeployPage
 
 
 
+// View Instance Page
+    public static $viewStartButton = '//*[@class="row"]/div[1]/button[1]';
+    public static $viewStopButton = './/*[@class="row"]/div[1]/button[2]';
+    public static $viewRestartButton = './/*[@class="row"]/div[1]/button[3]';
+    public static $viewDeleteButton = './/*[@class="row"]/div[1]/button[4]';
+    public static $viewSnapshotButton = './/*[@class="row"]/div[1]/button[5]';
+    public static $viewLogButton = './/*[@class="row"]/div[1]/button[6]';
+
+
+    public function goToViewInstancePage (){
+        $I = $this ->tester;
+        $I->click(self::$viewButton);
+        $I->waitForElementVisible(self::$viewStartButton);
+    }
 
 
 

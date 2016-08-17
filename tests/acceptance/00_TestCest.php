@@ -7,10 +7,15 @@ use \Step\Acceptance;
 class TestCest
 {
 
-    function T1Authorization(Step\Acceptance\PSLoginSteps $I)    {
-        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+    function T0InvalidAuthorization(Step\Acceptance\PSLoginSteps $I)    {
+        $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');
     }
-    /**/
+/**/
+
+    function T1Authorization(Step\Acceptance\PSLoginSteps $I)    {
+            $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+    }
+
     function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage) {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
@@ -23,7 +28,9 @@ class TestCest
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $deployPage->goToDeployPage();
         $deployPage->createTestInstance('master-test');
+        $deployPage->goToViewInstancePage();
     }
+
 
     function T4StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
@@ -41,7 +48,6 @@ class TestCest
 
     function T6DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $deployPage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
-        $deployPage->goToDeployPage();
         $deployPage->goToInstancesPage();
         $deployPage->deleteTestInstance();
     }
