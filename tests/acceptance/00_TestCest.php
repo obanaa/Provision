@@ -11,7 +11,6 @@ class TestCest
         $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');
     }
 
-
     function T1LoginLogout(Step\Acceptance\PSLoginSteps $I)    {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $I->logoutProvSystem();
@@ -26,13 +25,11 @@ class TestCest
         $PSDeployPage->goToDashboardPage();
         $PSDeployPage->minimizeSidebar();}
 
-
     function T3InvalidDataOnInstanceField(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $deployPage-> checkInvalidInstanceName('','test instance','test-','test@','@test','te:st');
     }
-
 
     function T4CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
@@ -40,7 +37,6 @@ class TestCest
         $deployPage->createTestInstance('master-test');
         $instancePage->goToViewInstancePage();
     }
-
 
     function T5StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
