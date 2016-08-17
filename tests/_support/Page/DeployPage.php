@@ -67,4 +67,39 @@ class DeployPage
         }
     }
 
+    public static $errorNotificationMessage = './/*[@class="textoFull"]';
+    public static $errorField = './/*[@id=\'errorInstancename\']';
+    public static $launchButtonDisable = './/div/*[@disabled=\'\']';
+
+    public function  checkInvalidInstanceName($empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol){
+        $I= $this ->tester;
+        $I->waitForElementVisible(self::$checkboxCommit);
+        $I->click(self::$branchMasterTestDropDown);
+    // Instance name with space
+        $I->fillField(self::$instanceNameField,$space);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+    // Instance name with -
+        $I->fillField(self::$instanceNameField,$endDash);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+    // Instance name with special symbol ->
+        $I->fillField(self::$instanceNameField,$endSpecSymbol);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+    // Instance name with special symbol <-
+        $I->fillField(self::$instanceNameField,$startSpecSymbol);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+    // Empty Instance name
+        $I->fillField(self::$instanceNameField,$empty);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+
+
+    }
+
+
+
+
 }

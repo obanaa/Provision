@@ -16,16 +16,25 @@ class TestCest
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $I->logoutProvSystem();
     }
-    /**/
+
     function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage) {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $PSDeployPage->goToInstancesPage();
         $PSDeployPage->goToSettingsPage();
         $PSDeployPage->goToUsersPage();
-        $PSDeployPage->goToDashboardPage(); }
+        $PSDeployPage->goToDashboardPage();
+        $PSDeployPage->minimizeSidebar();}
 
-    function T3CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+
+    function T3InvalidDataOnInstanceField(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+        $PSDeployPage->goToDeployPage();
+        $deployPage-> checkInvalidInstanceName('','test instance','test-','test@','@test');
+    }
+
+
+    function T4CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $deployPage->createTestInstance('master-test');
@@ -33,24 +42,24 @@ class TestCest
     }
 
 
-    function T4StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
+    function T5StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->stopTestInstance();
     }
 
-    function T5StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
+    function T6StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $PSDeployPage->goToInstancesPage();
         $instancePage->startTestInstance();
     }
 
-    function T6DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T7DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->deleteTestInstance();
     }
-
+    /**/
 }
 

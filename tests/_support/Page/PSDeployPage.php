@@ -63,6 +63,17 @@ class PSDeployPage
         $I->see('Dashboard',self::$titleText);
     }
 
+    public static $minimizeButton = '//*[@id="minimized"]';
+    public static $footerText = './/*[@class="footer"]/span';
+
+    public function minimizeSidebar(){
+        $I= $this ->tester;
+        $I->click(self::$minimizeButton);
+        $I->waitForElementNotVisible(self::$footerText);
+        $I->click(self::$minimizeButton);
+        $I->waitForElementVisible(self::$footerText);
+    }
+
 /*
     // DEPLOY PAGE
 
