@@ -71,7 +71,7 @@ class DeployPage
     public static $errorField = './/*[@id=\'errorInstancename\']';
     public static $launchButtonDisable = './/div/*[@disabled=\'\']';
 
-    public function  checkInvalidInstanceName($empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol){
+    public function  checkInvalidInstanceName($empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol,$symbolInText){
         $I= $this ->tester;
         $I->waitForElementVisible(self::$checkboxCommit);
         $I->click(self::$branchMasterTestDropDown);
@@ -93,6 +93,10 @@ class DeployPage
         $I->waitForElementVisible(self::$launchButtonDisable);
     // Empty Instance name
         $I->fillField(self::$instanceNameField,$empty);
+        $I->waitForElementVisible(self::$errorField);
+        $I->waitForElementVisible(self::$launchButtonDisable);
+    // Empty Instance name
+        $I->fillField(self::$instanceNameField,$symbolInText);
         $I->waitForElementVisible(self::$errorField);
         $I->waitForElementVisible(self::$launchButtonDisable);
 
