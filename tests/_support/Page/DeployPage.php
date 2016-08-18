@@ -37,8 +37,10 @@ class DeployPage
     public static $instanceDescriptionField = '//*[@id="instance_description"]';
     public static $existErrorBranch = '//*[@id="errorBranchName"]';
     public static $existErrorInstance = '//*[@id="errorInstancename"]';
-    public static $checkboxCommit = '//*[@class=\'deploy-container\']/form/div[2]//input';
+    public static $checkboxCommit = '//*[@class="deploy-container"]/form/div[2]//input';
     public static $createInstanceButton = '//*[@id="submitCreateInstance"]';
+    public static $showMoreCommitsButton = '//*[@class="deploy-footer"]/button[1]';
+    public static $commitField = '//*[@class="deploy-container"]//tr[8]';
 
     // Instance Page
 
@@ -67,9 +69,16 @@ class DeployPage
         }
     }
 
-    public static $errorNotificationMessage = './/*[@class="textoFull"]';
-    public static $errorField = './/*[@id=\'errorInstancename\']';
-    public static $launchButtonDisable = './/div/*[@disabled=\'\']';
+    public function checkShowMoreCommit() {
+        $I= $this ->tester;
+        $I->waitForElementVisible(self::$checkboxCommit);
+        $I->click(self::$showMoreCommitsButton);
+        $I->waitForElementVisible(self::$commitField);
+    }
+
+    public static $errorNotificationMessage = '//*[@class="textoFull"]';
+    public static $errorField = '//*[@id="errorInstancename"]';
+    public static $launchButtonDisable = '//div/*[@disabled=\'\']';
 
     public function  checkInvalidInstanceName($empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol,$symbolInText){
         $I= $this ->tester;
@@ -95,12 +104,10 @@ class DeployPage
         $I->fillField(self::$instanceNameField,$empty);
         $I->waitForElementVisible(self::$errorField);
         $I->waitForElementVisible(self::$launchButtonDisable);
-    // Empty Instance name
+    // Special Symbol in text
         $I->fillField(self::$instanceNameField,$symbolInText);
         $I->waitForElementVisible(self::$errorField);
         $I->waitForElementVisible(self::$launchButtonDisable);
-
-
     }
 
 
