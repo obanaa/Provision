@@ -29,23 +29,28 @@ class TestCest
         $deployPage-> checkInvalidInstanceName('','test instance','test-','test@','@test','te:st');
         $deployPage->checkShowMoreCommit();    }
 
-    function T4DCreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T4CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $deployPage->createTestInstance('master-test');
         $instancePage->goToViewInstancePage();    }
 
-    function T5StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
+    function T5RestartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
+        $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
+        $PSDeployPage->goToInstancesPage();
+        $instancePage->restartTestInstance();    }
+
+    function T6StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->stopTestInstance();    }
 
-    function T6StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
+    function T7StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->startTestInstance();    }
 
-    function T7DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T8DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->deleteTestInstance();    }

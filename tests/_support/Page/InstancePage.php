@@ -34,6 +34,7 @@ class InstancePage
 
     public static $testInstanceName = '//*[@title="master-test"]';
     public static $inProgressStatus = '//*[@class="ind-processing"]';
+    public static $updateStatus = './/*[@class="ind-processing action-in-processing"]';
     public static $statusMasterTestRun = '//*[contains(@class, "ind-run")]/../../td[2]//a[text()="master-test"]';
     public static $statusMasterTestStop = '//*[contains(@class, "ind-fail")]/../../td[2]//a[text()="master-test"]';
     public static $settingsButton = '//tr[2]//a[2]/button';
@@ -42,6 +43,21 @@ class InstancePage
     public static $stopActionButton = '//*[@class="actions-div"]//li[2]/a';
     public static $destroyActionButton = '//*[@class="actions-div"]//li[3]/a';
 
+
+    public function restartTestInstance(){
+        $I= $this ->tester;
+        $I->waitForElementVisible(self::$statusMasterTestRun);
+        $I->click(self::$settingsButton);
+        $I->waitForElementVisible(self::$restartActionButton);
+        $I->click(self::$restartActionButton);
+        try {
+            $I->waitForElementNotVisible(self::$updateStatus,10000);
+            $I->waitForElementVisible(self::$statusMasterTestRun);
+        } catch (Exception $e){
+            $I->click(self::$instancesLink);
+            $I->waitForElementVisible(self::$statusMasterTestRun);
+        }
+    }
 
 
 
