@@ -31,7 +31,7 @@ class DeployPage
     // DEPLOY PAGE
 
     public static $branchMasterTestDropDown = '//*[@id="select_branch"]/option[text()="master"]';
-    public static $newBranchField = '//*[@id="newNameBranch"]';
+    public static $newBranchField = '//*[@name="newNameBranch"]';
     public static $createBranchButton = '//*[@id="newBranchId"]';
     public static $instanceNameField = '//*[@id="instance_name"]';
     public static $instanceDescriptionField = '//*[@id="instance_description"]';
@@ -78,7 +78,9 @@ class DeployPage
 
     public static $errorNotificationMessage = '//*[@class="textoFull"]';
     public static $errorField = '//*[@id="errorInstancename"]';
+    public static $errorBranchField = '//*[@id="errorBranchName"]';
     public static $launchButtonDisable = '//div/*[@disabled=\'\']';
+    public static $launchBranchButtonDisable = '//*[@disabled=\'\']';
 
     public function  checkInvalidInstanceName($empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol,$symbolInText){
         $I= $this ->tester;
@@ -109,6 +111,45 @@ class DeployPage
         $I->waitForElementVisible(self::$errorField);
         $I->waitForElementVisible(self::$launchButtonDisable);
     }
+
+
+
+    public function checkInvalidBranchName($testInstance,$empty,$space,$endDash,$endSpecSymbol,$startSpecSymbol,$symbolInText){
+        $I= $this ->tester;
+        $I->waitForElementVisible(self::$checkboxCommit);
+        $I->click(self::$branchMasterTestDropDown);
+        // Instance name with space
+        $I->fillField(self::$instanceNameField,$testInstance);
+        $I->fillField(self::$newBranchField,$space);
+        $I->fillField(self::$newBranchField,$space);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+        // Instance name with -
+        $I->fillField(self::$newBranchField,$endDash);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+        // Instance name with special symbol ->
+        $I->fillField(self::$newBranchField,$endSpecSymbol);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+        // Instance name with special symbol <-
+        $I->fillField(self::$newBranchField,$startSpecSymbol);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+        // Empty Instance name
+        $I->fillField(self::$newBranchField,$empty);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+        // Special Symbol in text
+        $I->fillField(self::$newBranchField,$symbolInText);
+        $I->waitForElementVisible(self::$errorBranchField);
+        $I->waitForElementVisible(self::$launchBranchButtonDisable);
+    }
+
+
+
+
+
 
 
 

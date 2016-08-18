@@ -1,20 +1,19 @@
 <?php
 use \Step\Acceptance;
-
 /**
  * @group test
  */
 class TestCest
 {
-/**/
-    function T0InvalidAuthorization(Step\Acceptance\PSLoginSteps $I)    {
+    /**/
+    function T1InvalidAuthorization(Step\Acceptance\PSLoginSteps $I)    {
         $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');    }
 
-    function T1LoginLogout(Step\Acceptance\PSLoginSteps $I)    {
+    function T2SuccessfullyLoginLogout(Step\Acceptance\PSLoginSteps $I)    {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $I->logoutProvSystem();    }
 
-    function T2CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage) {
+    function T3CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage) {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $PSDeployPage->goToInstancesPage();
@@ -23,37 +22,37 @@ class TestCest
         $PSDeployPage->goToDashboardPage();
         $PSDeployPage->minimizeSidebar();}
 
-    function T3DeployPageInvalidDataCheck(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T4DeployPageInvalidDataCheck(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $deployPage-> checkInvalidInstanceName('','test instance','test-','test@','@test','te:st');
+        $deployPage->checkInvalidBranchName ('TestInstanceName', '','test branch','branch-','branch@','@branch','br:nch');
         $deployPage->checkShowMoreCommit();    }
 
-    function T4CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T5CreateTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
         $deployPage->createTestInstance('master-test');
         $instancePage->goToViewInstancePage();    }
 
-    function T5RestartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
+    function T6RestartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->restartTestInstance();    }
 
-    function T6StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
+    function T7StopTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage ){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->stopTestInstance();    }
 
-    function T7StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
+    function T8StartTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage, \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->startTestInstance();    }
 
-    function T8DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
+    function T9DeleteTestInstance(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->deleteTestInstance();    }
     /* */
 }
-
