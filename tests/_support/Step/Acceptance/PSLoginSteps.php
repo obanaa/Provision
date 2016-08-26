@@ -68,6 +68,34 @@ class PSLoginSteps extends \AcceptanceTester
     }
 
 
+    public static $userNameField = './/*[@name="username"]';
+    public static $password1Field = './/*[@name="password"]';
+    public static $submit1Button = './/*[@type="submit"]';
+    public static $errorMessage = './/*[@class="error message nobackground"]';
+
+
+
+
+
+    public function invalidUserPassword($invalidLogin,$nvalidPass){
+        $I = $this;
+        $I->amOnPage(self::$URL);
+        $I->fillField(self::$userNameField, $invalidLogin);
+        $I->fillField(self::$password1Field, $nvalidPass);
+        $I->click(self::$submit1Button);
+        $I->waitForElementVisible(self::$errorMessage);
+        $I->see('Invalid username or password',self::$errorMessage);
+    }
+
+    public function emptyPassword($invalidLogin){
+        $I = $this;
+        $I->amOnPage(self::$URL);
+        $I->fillField(self::$userNameField, $invalidLogin);
+        $I->click(self::$submit1Button);
+        $I->click(self::$submit1Button);
+        $I->waitForElementVisible(self::$errorMessage);
+        $I->see('Password required',self::$errorMessage);
+    }
 
 
 

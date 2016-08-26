@@ -7,8 +7,8 @@ modules:
 
     config:
         WebDriver:
-            url: 'http://149.202.195.201:8113/'
-
+          #  url: 'http://149.202.195.201:8113/'
+            url: 'https://dealer.veloxwheel.com/'
             restart: false
             browser: chrome
             window_size: 1980x1780
