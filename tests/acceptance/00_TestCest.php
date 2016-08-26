@@ -5,7 +5,7 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    /*
+
     function T1InvalidAuthorization(Step\Acceptance\PSLoginSteps $I)    {
         $I->invalidAuthorization('admin@admin.com', '5l8lZbklgx', '123@ya.ru' , '');    }
 
@@ -54,16 +54,10 @@ class TestCest
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->deleteTestInstance();    }
-     */
 
 
 
 
-    /**/
-    function LOGIN4LoginInvalidCredentials(Step\Acceptance\PSLoginSteps $I)    {
-        $I->invalidUserPassword('admin@admin.com', 'admin');    }
 
-    function LOGIN5LoginMissingCredentials(Step\Acceptance\PSLoginSteps $I)    {
-        $I->emptyPassword('admin@admin.com');    }
 
 }
