@@ -9,27 +9,15 @@ modules:
         WebDriver:
             url: 'http://149.202.195.201:8113/'
             restart: false
-            browser: Internet Explorer
+            browser: chrome
             window_size: 1980x1780
-            #clear_cookies: false
+            clear_cookies: false
 
 
 # --run in browserstack--
 
-           #host: 'hub.browserstack.com'
-           #port: 80
-
-
-# -- run in SauceLabs
-
-            url: 'http://149.202.195.201:8113/'
-            host: 'obana:a0752bc8-c4db-443e-bacf-aa998fcb767c@ondemand.saucelabs.com'
-            port: 80
-            browser: Internet Explorer
-            capabilities:
-             platform: 'Windows 10'
-             window_size: 1980x1780
-
+            #host: 'hub.browserstack.com'
+            #port: 80
 
 
 # -- login in browserstack
@@ -43,6 +31,9 @@ modules:
              resolution: 1920x1080
              os: 'WINDOWS'
              os_version: 7
+
+
+
 
 
 

@@ -66,4 +66,15 @@ class PSDeployPage
         $I->click(self::$minimizeButton);
         $I->waitForElementVisible(self::$footerText);    }
 
+    public function toolBarLinks(){
+        $I = $this -> tester;
+        $I->wantTo('Tool Bar links');
+        $this->goToDeployPage();
+        $this->goToInstancesPage();
+        $this->goToSettingsPage();
+        $this->goToUsersPage();
+        $this->goToDashboardPage();
+        $this->minimizeSidebar();    }
+
+
 }

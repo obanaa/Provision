@@ -15,17 +15,13 @@ class TestCest
 
     function T3CheckSideBarLinks(Step\Acceptance\PSLoginSteps $I, \Page\PSDeployPage $PSDeployPage) {
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
-        $PSDeployPage->goToDeployPage();
-        $PSDeployPage->goToInstancesPage();
-        $PSDeployPage->goToSettingsPage();
-        $PSDeployPage->goToUsersPage();
-        $PSDeployPage->goToDashboardPage();
-        $PSDeployPage->minimizeSidebar();}
+        $PSDeployPage->toolBarLinks();}
+
 
     function T4DeployPageInvalidDataCheck(Step\Acceptance\PSLoginSteps $I, \Page\DeployPage $deployPage , \Page\PSDeployPage $PSDeployPage , \Page\InstancePage $instancePage){
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToDeployPage();
-        $deployPage-> checkInvalidInstanceName('','test instance','test-','test@','@test','te:st');
+        $deployPage->checkInvalidInstanceName('','test instance','test-','test@','@test','te:st');
         $deployPage->checkInvalidBranchName ('TestInstanceName', '','test branch','branch-','branch@','@branch','br:nch');
         $deployPage->checkShowMoreCommit();    }
 
@@ -54,9 +50,6 @@ class TestCest
         $I->loginProvSystem('admin@admin.com', '5l8lZbklgx');
         $PSDeployPage->goToInstancesPage();
         $instancePage->deleteTestInstance();    }
-
-
-
 
 
 
